@@ -1,6 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const campsiteRouter = require('./routes/campsiteRouter');
+const promotionRouter = require('./routes/promotionRouter');
 
 // Hostname variables
 const hostname = 'localhost';
@@ -11,9 +12,11 @@ const app = express();
 app.use(morgan('dev'));
 app.use(express.json());
 
-app.use('/campsites', campsiteRouter)
+// Import routers
+app.use('/campsites', campsiteRouter);
+app.use('/promotions', promotionRouter);
 
-app.use(express.static(__dirname + '/public'))
+app.use(express.static(__dirname + '/public'));
 
 app.use((req, res) => {
 	res.statusCode = 200;
